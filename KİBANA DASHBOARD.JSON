@@ -1,0 +1,119 @@
+{
+  "title": "HoneyLogger - Attack Analysis Dashboard",
+  "description": "Sızma denemelerini analiz eden gerçek zamanlı dashboard",
+  "version": "1.0.0",
+  "panels": [
+    {
+      "title": "Toplam Saldırı Denemeleri",
+      "type": "metric",
+      "query": {
+        "index": "honeylogger-attacks",
+        "metric": "count"
+      }
+    },
+    {
+      "title": "Saldırı Tipleri Dağılımı",
+      "type": "pie",
+      "query": {
+        "index": "honeylogger-attacks",
+        "field": "attack_type.keyword",
+        "size": 10
+      }
+    },
+    {
+      "title": "Tehdit Seviyeleri",
+      "type": "donut",
+      "query": {
+        "index": "honeylogger-attacks",
+        "field": "threat_level.keyword"
+      }
+    },
+    {
+      "title": "Zaman Serisi - Saldırılar",
+      "type": "line",
+      "query": {
+        "index": "honeylogger-attacks",
+        "field": "timestamp",
+        "interval": "1h"
+      }
+    },
+    {
+      "title": "En Çok Saldıran IP'ler",
+      "type": "table",
+      "query": {
+        "index": "honeylogger-attacks",
+        "fields": ["ip", "attempt_count", "country", "threat_level"],
+        "size": 20,
+        "sort": ["attempt_count:desc"]
+      }
+    },
+    {
+      "title": "Ülke Bazlı Dağılım",
+      "type": "map",
+      "query": {
+        "index": "honeylogger-attacks",
+        "field": "country.keyword"
+      }
+    },
+    {
+      "title": "En Yaygın Kullanıcı Adları",
+      "type": "bar",
+      "query": {
+        "index": "honeylogger-attacks",
+        "field": "username.keyword",
+        "size": 10
+      }
+    },
+    {
+      "title": "En Yaygın Şifreler",
+      "type": "bar",
+      "query": {
+        "index": "honeylogger-attacks",
+        "field": "password.keyword",
+        "size": 10
+      }
+    },
+    {
+      "title": "HTTP Method Dağılımı",
+      "type": "pie",
+      "query": {
+        "index": "honeylogger-attacks",
+        "field": "method.keyword"
+      }
+    },
+    {
+      "title": "Bot Tespiti",
+      "type": "metric",
+      "query": {
+        "index": "honeylogger-attacks",
+        "field": "is_bot",
+        "filter": {"term": {"is_bot": true}}
+      }
+    },
+    {
+      "title": "Son Saldırılar (Real-time)",
+      "type": "table",
+      "query": {
+        "index": "honeylogger-attacks",
+        "fields": ["timestamp", "ip", "username", "attack_type", "threat_level"],
+        "size": 50,
+        "sort": ["timestamp:desc"]
+      },
+      "refresh": "5s"
+    },
+    {
+      "title": "ISP Dağılımı",
+      "type": "bar",
+      "query": {
+        "index": "honeylogger-attacks",
+        "field": "isp.keyword",
+        "size": 15
+      }
+    }
+  ],
+  "timeRange": {
+    "from": "now-24h",
+    "to": "now"
+  },
+  "refreshInterval": "30s"
+}
