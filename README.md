@@ -200,7 +200,7 @@ GET /honeylogger-attacks/_search
 
 ## Support
 
-Use GitHub Issues to report problems.
+Gmail: elalmisemre72@gmail.com
 
 ## License
 
