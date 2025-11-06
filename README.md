@@ -209,3 +209,5 @@ MIT License - For educational and research purposes.
 ---
 
 **HoneyLogger v1.0.0** - Trap attackers, keep your system secure!
+
+DEMO: https://honneylogger.netlify.app/
